@@ -1,13 +1,29 @@
 import { ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 
-import { Badge, Button, Container, GlassPanel, Reveal, Section, SectionHeading, TechChip } from "@/components/ui";
+import { Badge, Container, GlassPanel, Reveal, Section, SectionHeading, TechChip } from "@/components/ui";
 import { ROUTES } from "@/constants";
+import { buttonBaseClasses, buttonSizeClasses, buttonVariantClasses } from "@/lib/styles";
+import { cn } from "@/lib/utils";
 import { CASE_STUDIES } from "@/sections/FeaturedWork";
+
+// Same visual treatment as `Button`, but as a plain `Link` — the CTA is a route change,
+// not a same-page anchor, and Framer Motion's whileTap gesture recognition can drop a
+// real (slightly-moved) click as a "drag" while still playing the press animation, so
+// navigation silently no-ops. A real `Link` plus a CSS-only hover/press effect avoids that.
+const caseStudyLinkClasses = cn(
+  buttonBaseClasses,
+  buttonVariantClasses.primary,
+  buttonSizeClasses.md,
+  "mt-6 group transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]",
+);
 
 /** Spotlight for the one project with a published case study. */
 export function FeaturedProject() {
   const project = CASE_STUDIES.find((item) => item.slug);
   if (!project) return null;
+
+  const caseStudyHref = ROUTES.work(project.slug!);
 
   return (
     <Section id="featured-project" container={false} className="scroll-mt-24">
@@ -29,10 +45,10 @@ export function FeaturedProject() {
                 ))}
               </div>
 
-              <Button href={ROUTES.work(project.slug!)} className="mt-6 group">
+              <Link to={caseStudyHref} className={caseStudyLinkClasses}>
                 View Case Study
                 <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
-              </Button>
+              </Link>
             </div>
 
             <div>

@@ -10,7 +10,7 @@ import { NAV_LINKS, ROUTES, SITE } from "@/constants";
 import { useActiveSection, useScrolled } from "@/hooks";
 import { cn } from "@/lib/utils";
 
-const SECTION_IDS = NAV_LINKS.map((link) => link.href.replace("#", ""));
+const SECTION_IDS = NAV_LINKS.filter((link) => link.href.startsWith("#")).map((link) => link.href.replace("#", ""));
 
 /** Premium floating navbar: transparent over the hero, blurs in once scrolled. */
 export function Navbar() {
@@ -74,16 +74,27 @@ export function Navbar() {
 
         <nav aria-label="Primary" className="hidden items-center gap-10 md:flex">
           {NAV_LINKS.map((link) => {
-            const isActive = activeId === link.href.slice(1);
+            const isRoute = !link.href.startsWith("#");
+            const isActive = isRoute ? location.pathname === link.href : activeId === link.href.slice(1);
+            const linkClassName = cn(
+              "text-sm transition-colors hover:text-foreground",
+              isActive ? "text-foreground" : "text-muted-foreground",
+            );
+
+            if (isRoute) {
+              return (
+                <Link key={link.href} to={link.href} aria-current={isActive ? "page" : undefined} className={linkClassName}>
+                  {link.label}
+                </Link>
+              );
+            }
+
             return (
               <a
                 key={link.href}
                 href={toSectionHref(link.href)}
                 aria-current={isActive ? "page" : undefined}
-                className={cn(
-                  "text-sm transition-colors hover:text-foreground",
-                  isActive ? "text-foreground" : "text-muted-foreground",
-                )}
+                className={linkClassName}
               >
                 {link.label}
               </a>
@@ -123,17 +134,34 @@ export function Navbar() {
           >
             <Container className="flex flex-col gap-1 py-4">
               {NAV_LINKS.map((link) => {
-                const isActive = activeId === link.href.slice(1);
+                const isRoute = !link.href.startsWith("#");
+                const isActive = isRoute ? location.pathname === link.href : activeId === link.href.slice(1);
+                const linkClassName = cn(
+                  "rounded-lg px-3 py-3 text-sm transition-colors hover:bg-muted hover:text-foreground",
+                  isActive ? "bg-muted text-foreground" : "text-muted-foreground",
+                );
+
+                if (isRoute) {
+                  return (
+                    <Link
+                      key={link.href}
+                      to={link.href}
+                      onClick={() => setOpen(false)}
+                      aria-current={isActive ? "page" : undefined}
+                      className={linkClassName}
+                    >
+                      {link.label}
+                    </Link>
+                  );
+                }
+
                 return (
                   <a
                     key={link.href}
                     href={toSectionHref(link.href)}
                     onClick={() => setOpen(false)}
                     aria-current={isActive ? "page" : undefined}
-                    className={cn(
-                      "rounded-lg px-3 py-3 text-sm transition-colors hover:bg-muted hover:text-foreground",
-                      isActive ? "bg-muted text-foreground" : "text-muted-foreground",
-                    )}
+                    className={linkClassName}
                   >
                     {link.label}
                   </a>

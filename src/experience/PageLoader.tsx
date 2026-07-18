@@ -26,7 +26,7 @@ export function PageLoader() {
           aria-label="Loading"
           exit={{ opacity: 0 }}
           transition={{ duration: 0.6, ease: EASE_SMOOTH }}
-          className="fixed inset-0 z-[100] flex items-center justify-center bg-background"
+          className="pointer-events-none fixed inset-0 z-[100] flex items-center justify-center bg-background"
         >
           <motion.span
             aria-hidden

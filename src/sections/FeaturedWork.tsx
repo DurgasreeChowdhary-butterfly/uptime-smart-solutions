@@ -1,7 +1,9 @@
 import { ArrowRight, Image as ImageIcon } from "lucide-react";
+import { Link } from "react-router-dom";
 
 import type { BadgeAccent } from "@/components/ui";
 import { Badge, Card, Reveal, Section, SectionHeading, TechChip } from "@/components/ui";
+import { ROUTES } from "@/constants";
 import { cn } from "@/lib/utils";
 
 export interface CaseStudy {
@@ -39,6 +41,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     tech: ["Pipecat", "Deepgram", "ElevenLabs", "Gemini"],
     outcome: "Developed a production-ready Voice AI platform for automated customer interactions.",
     accent: "purple",
+    slug: "voiceiq",
   },
   {
     title: "Prakruti Organics",
@@ -48,6 +51,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     tech: ["React", "FastAPI", "PostgreSQL", "Gemini", "Razorpay"],
     outcome: "Unified commerce, payments, AI assistance, and affiliate marketing into a single platform.",
     accent: "green",
+    slug: "prakruti-organics",
   },
   {
     title: "Iraivi Nest",
@@ -57,6 +61,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     tech: ["React", "FastAPI", "PostgreSQL"],
     outcome: "Automated billing, electricity allocation, and resident lifecycle management.",
     accent: "orange",
+    slug: "iraivi-nest",
   },
   {
     title: "Enterprise Workflow Automation",
@@ -91,9 +96,9 @@ export function FeaturedWork() {
       />
 
       <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {CASE_STUDIES.map((item, i) => (
-          <Reveal key={item.title} delay={i * 0.06} className={item.hero ? "lg:col-span-2" : undefined}>
-            <Card accent={item.accent} className="flex h-full flex-col overflow-hidden p-0">
+        {CASE_STUDIES.map((item, i) => {
+          const cardContent = (
+            <Card accent={item.accent} hover={Boolean(item.slug)} className="flex h-full flex-col overflow-hidden p-0">
               <div className="flex aspect-video items-center justify-center border-b border-border bg-muted/40">
                 <ImageIcon className="h-8 w-8 text-muted-foreground" aria-hidden />
               </div>
@@ -119,14 +124,32 @@ export function FeaturedWork() {
                 <p className={cn("mt-4", metaLabelClasses)}>Business Impact</p>
                 <p className="mt-1.5 text-sm text-muted-foreground">{item.outcome}</p>
 
-                <span className="mt-6 inline-flex items-center gap-1.5 self-start text-sm font-medium text-primary">
-                  View Case Study
-                  <ArrowRight className="h-4 w-4" aria-hidden />
-                </span>
+                {item.slug ? (
+                  <span className="mt-6 inline-flex items-center gap-1.5 self-start text-sm font-medium text-primary">
+                    View Case Study
+                    <ArrowRight className="h-4 w-4" aria-hidden />
+                  </span>
+                ) : (
+                  <Badge variant="status" tone="neutral" className="mt-6 self-start">
+                    Coming Soon
+                  </Badge>
+                )}
               </div>
             </Card>
-          </Reveal>
-        ))}
+          );
+
+          return (
+            <Reveal key={item.title} delay={i * 0.06} className={item.hero ? "lg:col-span-2" : undefined}>
+              {item.slug ? (
+                <Link to={ROUTES.work(item.slug)} className="block h-full" aria-label={`View the ${item.title} case study`}>
+                  {cardContent}
+                </Link>
+              ) : (
+                cardContent
+              )}
+            </Reveal>
+          );
+        })}
       </div>
     </Section>
   );

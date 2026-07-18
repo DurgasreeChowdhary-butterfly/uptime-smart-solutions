@@ -3,14 +3,8 @@ import { forwardRef } from "react";
 import type { AnchorHTMLAttributes, ButtonHTMLAttributes } from "react";
 
 import { transitionFast } from "@/animations";
-import { buttonVariantClasses as variantClasses } from "@/lib/styles";
+import { buttonBaseClasses as baseClasses, buttonSizeClasses as sizeClasses, buttonVariantClasses as variantClasses } from "@/lib/styles";
 import { cn } from "@/lib/utils";
-
-const sizeClasses = {
-  sm: "h-9 px-4 text-sm",
-  md: "h-11 px-6 text-sm",
-  lg: "h-13 px-8 text-base",
-} as const;
 
 export type ButtonVariant = keyof typeof variantClasses;
 export type ButtonSize = keyof typeof sizeClasses;
@@ -37,9 +31,6 @@ type ButtonAsAnchor = SharedProps &
   Omit<AnchorHTMLAttributes<HTMLAnchorElement>, ConflictingHandlers> & { href: string };
 
 export type ButtonProps = ButtonAsButton | ButtonAsAnchor;
-
-const baseClasses =
-  "inline-flex items-center justify-center gap-2 rounded-full font-medium whitespace-nowrap transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:opacity-50 disabled:pointer-events-none";
 
 /** Reusable call-to-action control. Renders an `<a>` when `href` is passed, otherwise a `<button>`. */
 export const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonProps>(

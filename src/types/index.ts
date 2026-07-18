@@ -1,5 +1,7 @@
 import type { ReactNode } from "react";
 
+export * from "./caseStudy";
+
 export interface NavLink {
   label: string;
   href: string;

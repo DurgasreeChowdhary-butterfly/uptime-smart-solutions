@@ -1,5 +1,5 @@
 export * from "./Capabilities";
-export * from "./ClientSuccess";
+export * from "./EngineeringPrinciples";
 export * from "./FeaturedWork";
 export * from "./FinalCTA";
 export * from "./Hero";

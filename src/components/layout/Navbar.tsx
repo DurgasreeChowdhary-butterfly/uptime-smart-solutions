@@ -1,17 +1,56 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowRight, Menu, X } from "lucide-react";
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import type { MouseEvent } from "react";
+import { Link, useLocation } from "react-router-dom";
 
 import { transitionSmooth } from "@/animations";
 import { Button, Container } from "@/components/ui";
 import { NAV_LINKS, ROUTES, SITE } from "@/constants";
-import { useScrolled } from "@/hooks";
+import { useActiveSection, useScrolled } from "@/hooks";
+import { cn } from "@/lib/utils";
+
+const SECTION_IDS = NAV_LINKS.map((link) => link.href.replace("#", ""));
 
 /** Premium floating navbar: transparent over the hero, blurs in once scrolled. */
 export function Navbar() {
   const scrolled = useScrolled(24);
   const [open, setOpen] = useState(false);
+  const activeId = useActiveSection(SECTION_IDS);
+  const location = useLocation();
+  const isHome = location.pathname === ROUTES.home;
+  const toSectionHref = (hash: string) => (isHome ? hash : `${ROUTES.home}${hash}`);
+
+  // Lock body scroll while the mobile menu is open, and always restore it on close/unmount.
+  useEffect(() => {
+    if (!open) return;
+
+    const original = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.body.style.overflow = original;
+    };
+  }, [open]);
+
+  // Let Escape close the mobile menu, matching click-outside/link-click behavior.
+  useEffect(() => {
+    if (!open) return;
+
+    function handleKeyDown(e: KeyboardEvent) {
+      if (e.key === "Escape") setOpen(false);
+    }
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [open]);
+
+  function handleLogoClick(e: MouseEvent<HTMLAnchorElement>) {
+    setOpen(false);
+    if (location.pathname !== ROUTES.home) return;
+    e.preventDefault();
+    document.getElementById("hero")?.scrollIntoView({ behavior: "smooth" });
+  }
 
   return (
     <header className="fixed inset-x-0 top-0 z-50">
@@ -26,6 +65,7 @@ export function Navbar() {
       <Container className="relative z-10 flex h-16 items-center justify-between md:h-20">
         <Link
           to={ROUTES.home}
+          onClick={handleLogoClick}
           className="flex items-center gap-2 font-display text-lg font-semibold tracking-tight"
         >
           <span className="h-2 w-2 rounded-full bg-accent" aria-hidden />
@@ -33,19 +73,26 @@ export function Navbar() {
         </Link>
 
         <nav aria-label="Primary" className="hidden items-center gap-10 md:flex">
-          {NAV_LINKS.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className="text-sm text-muted-foreground transition-colors hover:text-foreground"
-            >
-              {link.label}
-            </a>
-          ))}
+          {NAV_LINKS.map((link) => {
+            const isActive = activeId === link.href.slice(1);
+            return (
+              <a
+                key={link.href}
+                href={toSectionHref(link.href)}
+                aria-current={isActive ? "page" : undefined}
+                className={cn(
+                  "text-sm transition-colors hover:text-foreground",
+                  isActive ? "text-foreground" : "text-muted-foreground",
+                )}
+              >
+                {link.label}
+              </a>
+            );
+          })}
         </nav>
 
         <div className="hidden md:block">
-          <Button href="#contact" size="sm" className="group">
+          <Button href={toSectionHref("#contact")} size="sm" className="group">
             Let&rsquo;s Talk
             <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
           </Button>
@@ -75,18 +122,25 @@ export function Navbar() {
             className="overflow-hidden border-b border-border bg-background/95 backdrop-blur-xl md:hidden"
           >
             <Container className="flex flex-col gap-1 py-4">
-              {NAV_LINKS.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  onClick={() => setOpen(false)}
-                  className="rounded-lg px-3 py-3 text-sm text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
-                >
-                  {link.label}
-                </a>
-              ))}
+              {NAV_LINKS.map((link) => {
+                const isActive = activeId === link.href.slice(1);
+                return (
+                  <a
+                    key={link.href}
+                    href={toSectionHref(link.href)}
+                    onClick={() => setOpen(false)}
+                    aria-current={isActive ? "page" : undefined}
+                    className={cn(
+                      "rounded-lg px-3 py-3 text-sm transition-colors hover:bg-muted hover:text-foreground",
+                      isActive ? "bg-muted text-foreground" : "text-muted-foreground",
+                    )}
+                  >
+                    {link.label}
+                  </a>
+                );
+              })}
               <Button
-                href="#contact"
+                href={toSectionHref("#contact")}
                 size="sm"
                 className="mt-2 w-full justify-center"
                 onClick={() => setOpen(false)}

@@ -10,7 +10,7 @@ import { HeroLabels } from "./HeroLabels";
 /** Homepage hero: editorial two-column intro with an interactive 3D centerpiece. */
 export function Hero() {
   return (
-    <section className="relative isolate overflow-hidden">
+    <section id="hero" className="relative isolate scroll-mt-24 overflow-hidden">
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_80%_55%_at_50%_-10%,color-mix(in_oklab,var(--color-primary)_18%,transparent),transparent)]"
@@ -70,7 +70,7 @@ export function Hero() {
             <Button href="#contact" size="lg">
               Discuss Your Project
             </Button>
-            <Button href="#projects" size="lg" variant="secondary">
+            <Button href="#work" size="lg" variant="secondary">
               Explore Our Work
             </Button>
           </motion.div>

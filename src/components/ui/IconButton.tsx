@@ -50,7 +50,7 @@ type IconButtonAsAnchor = SharedProps &
 export type IconButtonProps = IconButtonAsButton | IconButtonAsAnchor;
 
 const baseClasses =
-  "inline-flex shrink-0 items-center justify-center rounded-full transition-colors focus-visible:outline-none disabled:opacity-50 disabled:pointer-events-none";
+  "inline-flex shrink-0 items-center justify-center rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:opacity-50 disabled:pointer-events-none";
 
 /** Circular icon-only control — same color language as `Button`, sized for toolbars and social links. */
 export const IconButton = forwardRef<HTMLButtonElement | HTMLAnchorElement, IconButtonProps>(

@@ -26,6 +26,14 @@
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
 
+  /* Case-study accent hues — subtle borders/glow/chip outlines only, never solid fills. */
+  --color-accent-blue: var(--accent-blue);
+  --color-accent-purple: var(--accent-purple);
+  --color-accent-green: var(--accent-green);
+  --color-accent-orange: var(--accent-orange);
+  --color-accent-cyan: var(--accent-cyan);
+  --color-accent-indigo: var(--accent-indigo);
+
   --container-max: 80rem;
 
   --animate-fade-in: fade-in 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
@@ -79,6 +87,13 @@
   --accent: #10e0a4;
   --accent-foreground: #04150f;
 
+  --accent-blue: #3b82f6;
+  --accent-purple: #a855f7;
+  --accent-green: #22c55e;
+  --accent-orange: #f97316;
+  --accent-cyan: #06b6d4;
+  --accent-indigo: #6366f1;
+
   color-scheme: dark;
 }
 
@@ -100,6 +115,13 @@
 
   --accent: #0abd8c;
   --accent-foreground: #ffffff;
+
+  --accent-blue: #2563eb;
+  --accent-purple: #9333ea;
+  --accent-green: #16a34a;
+  --accent-orange: #ea580c;
+  --accent-cyan: #0891b2;
+  --accent-indigo: #4f46e5;
 
   color-scheme: light;
 }

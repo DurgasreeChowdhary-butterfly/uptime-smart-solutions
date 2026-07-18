@@ -1,52 +1,62 @@
-import { Cloud, Code2, Cpu, Database, GitBranch, Layers } from "lucide-react";
-import type { LucideIcon } from "lucide-react";
-
 import { Container, Reveal, Section, SectionBackground, SectionHeading, TechChip } from "@/components/ui";
-
-interface TechItem {
-  label: string;
-  icon: LucideIcon;
-}
 
 interface TechGroup {
   label: string;
-  items: TechItem[];
+  description: string;
+  items: string[];
 }
 
 const TECH_GROUPS: TechGroup[] = [
   {
-    label: "Category 01",
+    label: "AI & Intelligence",
+    description: "Intelligent systems powered by LLMs, retrieval, speech, computer vision, and automation.",
     items: [
-      { label: "Technology 01", icon: Code2 },
-      { label: "Technology 02", icon: Cpu },
-      { label: "Technology 03", icon: Layers },
+      "Gemini",
+      "LangChain",
+      "HuggingFace",
+      "Pinecone",
+      "FAISS",
+      "Deepgram",
+      "ElevenLabs",
+      "Pipecat",
+      "TensorFlow",
+      "OpenCV",
     ],
   },
   {
-    label: "Category 02",
-    items: [
-      { label: "Technology 04", icon: Database },
-      { label: "Technology 05", icon: Cloud },
-    ],
+    label: "Frontend Engineering",
+    description: "Responsive, accessible, and high-performance interfaces designed for exceptional user experiences.",
+    items: ["React", "TypeScript", "Tailwind CSS", "Framer Motion", "React Three Fiber", "Vite"],
   },
   {
-    label: "Category 03",
-    items: [
-      { label: "Technology 06", icon: GitBranch },
-      { label: "Technology 07", icon: Cpu },
-      { label: "Technology 08", icon: Code2 },
-    ],
+    label: "Backend & Platform Engineering",
+    description: "Secure APIs, scalable architectures, authentication, business logic, and enterprise-grade backend systems.",
+    items: ["Python", "FastAPI", "SQLAlchemy", "PostgreSQL", "JWT", "Alembic", "REST APIs"],
+  },
+  {
+    label: "Cloud & Deployment",
+    description: "Reliable deployments, containerized applications, and cloud-native infrastructure.",
+    items: ["Docker", "AWS", "Fly.io", "GitHub Actions"],
+  },
+  {
+    label: "Payments & Integrations",
+    description: "Connecting software with payment providers, communication platforms, and external business services.",
+    items: ["Razorpay", "Twilio", "WhatsApp", "OCR"],
   },
 ];
 
-/** Layout-only grouped technology chip structure — categories and chips are placeholders. */
+/** Grouped technology chip structure showcasing the stack behind the studio's work. */
 export function Technology() {
   return (
     <Section id="technology" container={false} className="relative isolate scroll-mt-24 overflow-hidden">
       <SectionBackground glow={false} noise={false} />
 
       <Container>
-        <SectionHeading eyebrow="[Eyebrow Label]" heading="[Section Heading]" />
+        <SectionHeading
+          eyebrow="TECHNOLOGY"
+          heading="Modern Technology. Production Engineering."
+          description="We select technologies based on scalability, security, maintainability, and long-term business value—not trends."
+        />
 
         <div className="mt-12 flex flex-col gap-8">
           {TECH_GROUPS.map((group, gi) => (
@@ -55,9 +65,10 @@ export function Technology() {
                 <p className="text-xs font-medium tracking-[0.2em] text-muted-foreground uppercase">
                   {group.label}
                 </p>
+                <p className="mt-2 text-sm text-muted-foreground">{group.description}</p>
                 <div className="mt-4 flex flex-wrap gap-3">
-                  {group.items.map((item) => (
-                    <TechChip key={item.label} label={item.label} icon={item.icon} />
+                  {group.items.map((label) => (
+                    <TechChip key={label} label={label} />
                   ))}
                 </div>
               </div>

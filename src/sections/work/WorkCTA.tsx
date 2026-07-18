@@ -1,9 +1,9 @@
 import { Button, Container, Reveal, Section, SectionBackground } from "@/components/ui";
 
-/** Full-width closing CTA. */
-export function FinalCTA() {
+/** Closing call-to-action for the `/work` index — same full-width treatment as the homepage `FinalCTA`. */
+export function WorkCTA() {
   return (
-    <Section id="contact" spacing="xl" container={false} className="relative isolate scroll-mt-24 overflow-hidden">
+    <Section id="work-cta" spacing="xl" container={false} className="relative isolate scroll-mt-24 overflow-hidden">
       <SectionBackground grid={false} glowPosition="center" />
 
       <Container size="narrow" className="flex flex-col items-center text-center">
@@ -16,7 +16,7 @@ export function FinalCTA() {
 
         <Reveal variant="fadeInUp" delay={0.05} className="mt-4">
           <h2 className="font-display text-3xl font-semibold tracking-tight text-balance sm:text-4xl lg:text-5xl">
-            Ready to Build Something Exceptional?
+            Have a Project in Mind?
           </h2>
         </Reveal>
 
@@ -25,8 +25,7 @@ export function FinalCTA() {
           delay={0.08}
           className="mt-4 max-w-2xl text-base text-muted-foreground sm:text-lg"
         >
-          Whether you&apos;re creating an AI-powered product, modernizing business operations, or launching a custom
-          software platform, we&apos;re ready to help turn your vision into production-ready software.
+          Let&apos;s talk about engineering your next AI-driven product or platform.
         </Reveal>
 
         <Reveal
@@ -34,11 +33,8 @@ export function FinalCTA() {
           delay={0.1}
           className="mt-8 flex flex-wrap items-center justify-center gap-4"
         >
-          <Button href="#contact" size="lg">
+          <Button href="/#contact" size="lg">
             Start a Conversation
-          </Button>
-          <Button href="#work" size="lg" variant="secondary">
-            Explore Our Work
           </Button>
         </Reveal>
       </Container>

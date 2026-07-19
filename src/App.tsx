@@ -1,6 +1,7 @@
 import { lazy } from "react";
 import { Route, Routes } from "react-router-dom";
 
+import { ScrollToTop } from "@/experience";
 import { MainLayout } from "@/layouts/MainLayout";
 
 // Lazy-loaded per route so each page's JS only downloads when it's actually visited —
@@ -17,18 +18,21 @@ const NotFound = lazy(() => import("@/pages/NotFound").then((m) => ({ default: m
 
 function App() {
   return (
-    <Routes>
-      <Route element={<MainLayout />}>
-        <Route index element={<Home />} />
-        <Route path="work" element={<Work />} />
-        <Route path="work/:slug" element={<CaseStudy />} />
-        <Route path="about" element={<About />} />
-        <Route path="contact" element={<Contact />} />
-        <Route path="privacy" element={<Privacy />} />
-        <Route path="terms" element={<Terms />} />
-        <Route path="*" element={<NotFound />} />
-      </Route>
-    </Routes>
+    <>
+      <ScrollToTop />
+      <Routes>
+        <Route element={<MainLayout />}>
+          <Route index element={<Home />} />
+          <Route path="work" element={<Work />} />
+          <Route path="work/:slug" element={<CaseStudy />} />
+          <Route path="about" element={<About />} />
+          <Route path="contact" element={<Contact />} />
+          <Route path="privacy" element={<Privacy />} />
+          <Route path="terms" element={<Terms />} />
+          <Route path="*" element={<NotFound />} />
+        </Route>
+      </Routes>
+    </>
   );
 }
 

@@ -7,6 +7,7 @@ export function FeatureGrid({
   eyebrow = "FEATURES",
   heading = "Key Features",
   description,
+  image,
   features,
   className,
 }: FeatureGridProps) {
@@ -14,7 +15,26 @@ export function FeatureGrid({
     <Section id="features" className={cn("scroll-mt-24", className)}>
       <SectionHeading eyebrow={eyebrow} heading={heading} description={description} />
 
-      <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      {image ? (
+        <Reveal variant="fadeIn" className="relative mt-12 aspect-video w-full">
+          <img
+            src={image.src}
+            alt={image.alt}
+            width={1672}
+            height={941}
+            loading="lazy"
+            decoding="async"
+            className="h-full w-full rounded-2xl border border-border object-cover"
+          />
+        </Reveal>
+      ) : null}
+
+      <div
+        className={cn(
+          "grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4",
+          image ? "mt-8" : "mt-12",
+        )}
+      >
         {features.map((feature, i) => (
           <Reveal key={feature.title} delay={i * 0.08}>
             <Card className="h-full">

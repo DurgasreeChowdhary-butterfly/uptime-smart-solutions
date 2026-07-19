@@ -18,6 +18,8 @@ export interface CaseStudy {
   hero?: boolean;
   /** `/work/:slug` this project links to. Omitted for projects without a published case study yet. */
   slug?: string;
+  /** Card thumbnail. Falls back to a placeholder icon when omitted. */
+  image?: { src: string; alt: string };
 }
 
 export const CASE_STUDIES: CaseStudy[] = [
@@ -32,6 +34,10 @@ export const CASE_STUDIES: CaseStudy[] = [
     accent: "blue",
     hero: true,
     slug: "taxease-ai",
+    image: {
+      src: "/taxease-ai/hero.png",
+      alt: "TaxEase AI platform dashboard showing the guided income tax filing workflow",
+    },
   },
   {
     title: "VoiceIQ",
@@ -99,8 +105,20 @@ export function FeaturedWork() {
         {CASE_STUDIES.map((item, i) => {
           const cardContent = (
             <Card accent={item.accent} hover={Boolean(item.slug)} className="flex h-full flex-col overflow-hidden p-0">
-              <div className="flex aspect-video items-center justify-center border-b border-border bg-muted/40">
-                <ImageIcon className="h-8 w-8 text-muted-foreground" aria-hidden />
+              <div className="flex aspect-video items-center justify-center overflow-hidden border-b border-border bg-muted/40">
+                {item.image ? (
+                  <img
+                    src={item.image.src}
+                    alt={item.image.alt}
+                    width={1672}
+                    height={941}
+                    loading="lazy"
+                    decoding="async"
+                    className="h-full w-full object-cover"
+                  />
+                ) : (
+                  <ImageIcon className="h-8 w-8 text-muted-foreground" aria-hidden />
+                )}
               </div>
               <div className="flex flex-1 flex-col p-6">
                 <Badge accent={item.accent} className="self-start">

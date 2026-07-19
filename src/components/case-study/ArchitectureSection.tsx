@@ -17,17 +17,19 @@ export function ArchitectureSection({
     <Section id="architecture" className={cn("scroll-mt-24", className)}>
       <SectionHeading eyebrow={eyebrow} heading={heading} description={description} />
 
-      <Reveal variant="fadeIn" className="relative mt-12 aspect-[16/7] w-full">
+      <Reveal variant="fadeIn" className="relative mt-12 w-full">
         {diagram ? (
           <img
             src={diagram.src}
             alt={diagram.alt}
+            width={1672}
+            height={941}
             loading="lazy"
             decoding="async"
-            className="h-full w-full rounded-2xl border border-border object-cover"
+            className="mx-auto h-auto w-full rounded-2xl border border-border object-contain"
           />
         ) : (
-          <div className="flex h-full w-full items-center justify-center rounded-2xl border border-border bg-muted/40">
+          <div className="flex aspect-[16/7] w-full items-center justify-center rounded-2xl border border-border bg-muted/40">
             <ImageIcon className="h-10 w-10 text-muted-foreground" aria-hidden />
           </div>
         )}

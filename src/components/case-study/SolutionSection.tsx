@@ -23,6 +23,8 @@ export function SolutionSection({
             <img
               src={image.src}
               alt={image.alt}
+              width={1672}
+              height={941}
               loading="lazy"
               decoding="async"
               className="h-full w-full rounded-2xl border border-border object-cover"

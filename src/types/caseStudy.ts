@@ -95,6 +95,7 @@ export interface FeatureGridProps {
   eyebrow?: ReactNode;
   heading?: ReactNode;
   description?: ReactNode;
+  image?: CaseStudyImage;
   features: FeatureGridItem[];
   className?: string;
 }

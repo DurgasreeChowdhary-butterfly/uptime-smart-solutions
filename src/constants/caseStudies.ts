@@ -34,6 +34,10 @@ export const CASE_STUDIES: CaseStudyRegistryEntry[] = [
         focus: "Secure • Guided • AI-Assisted",
         accent: "blue",
         tech: ["React", "FastAPI", "PostgreSQL", "OCR", "AI"],
+        image: {
+          src: "/taxease-ai/hero.png",
+          alt: "TaxEase AI platform dashboard showing the guided income tax filing workflow",
+        },
       },
       productVision: {
         statement:
@@ -57,6 +61,10 @@ export const CASE_STUDIES: CaseStudyRegistryEntry[] = [
           "Low tolerance for calculation error in a compliance-driven domain",
           "Need for a guided experience that remains secure end to end",
         ],
+        image: {
+          src: "/taxease-ai/challenge.png",
+          alt: "Manual, fragmented financial document reconciliation that TaxEase AI replaces",
+        },
       },
       solution: {
         description:
@@ -87,6 +95,10 @@ export const CASE_STUDIES: CaseStudyRegistryEntry[] = [
             description: "System components and services are scoped to the minimum access they need to perform their function, limiting the blast radius of any single failure.",
           },
         ],
+        image: {
+          src: "/taxease-ai/solution.png",
+          alt: "TaxEase AI's secure, guided digital tax filing workflow interface",
+        },
       },
       architecture: {
         description:
@@ -121,8 +133,16 @@ export const CASE_STUDIES: CaseStudyRegistryEntry[] = [
             description: "The engine's output is compiled into a clear summary and reports the individual can review before filing.",
           },
         ],
+        diagram: {
+          src: "/taxease-ai/architecture.png",
+          alt: "TaxEase AI system architecture diagram, from document upload through AI extraction, human verification, and the deterministic tax engine",
+        },
       },
       featureGrid: {
+        image: {
+          src: "/taxease-ai/features.png",
+          alt: "Overview of TaxEase AI's key platform features: guided filing, deterministic tax engine, AI document understanding, and secure design",
+        },
         features: [
           {
             title: "Guided Filing Workflow",

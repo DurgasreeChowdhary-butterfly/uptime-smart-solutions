@@ -69,21 +69,29 @@ export function Navbar() {
       />
 
       <Container className="relative z-10 flex h-16 items-center justify-between md:h-20">
-        {/* The centered nav (6 links) plus the CTA + logo cluster need ~1220px of room to
-        coexist without colliding — that only reliably clears at `xl` (1280px, which is also
-        `--container-max`, so the row never gets any wider beyond this point). Below `xl`,
-        stick with the hamburger menu rather than let nav links visually overlap the logo. */}
-        <button
-          type="button"
-          onClick={() => setOpen((v) => !v)}
-          aria-label="Toggle menu"
-          aria-expanded={open}
-          aria-controls="mobile-menu"
-          className="inline-flex h-10 w-10 items-center justify-center rounded-full text-foreground xl:hidden"
+        {/* `/logo.png` is the cropped asset from Phase 10.1 — still an opaque white
+        background baked in (source had no alpha channel), so it needs *some* light
+        backing to read cleanly on the dark navbar. Kept to the smallest padding that
+        avoids the mark touching the edge, no shadow/ring — a mark, not a card. */}
+        <Link
+          to={ROUTES.home}
+          onClick={handleLogoClick}
+          aria-label="Uptime Smart Solutions — Home"
+          className="flex shrink-0 items-center rounded-md bg-white p-1 transition-opacity hover:opacity-90"
         >
-          {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-        </button>
+          <img
+            src="/logo.png"
+            alt="Uptime Smart Solutions Pvt. Ltd."
+            width={LOGO_INTRINSIC_WIDTH}
+            height={LOGO_INTRINSIC_HEIGHT}
+            className="h-9 w-auto md:h-10 lg:h-11"
+          />
+        </Link>
 
+        {/* The centered nav (6 links) plus the logo + CTA need ~1220px of room to coexist
+        without colliding — that only reliably clears at `xl` (1280px, which is also
+        `--container-max`, so the row never gets any wider beyond this point). Below `xl`,
+        stick with the hamburger menu rather than let nav links visually overlap either side. */}
         <nav
           aria-label="Primary"
           className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-10 xl:flex"
@@ -117,33 +125,23 @@ export function Navbar() {
           })}
         </nav>
 
-        <div className="ml-auto flex items-center gap-4 xl:gap-6">
-          <div className="hidden xl:block">
-            <Button href={toSectionHref("#contact")} size="sm" className="group">
-              Let&rsquo;s Talk
-              <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
-            </Button>
-          </div>
-
-          {/* `/logo.png` is the exact uploaded asset — opaque white background baked in (source
-          was a JPEG, so no alpha channel was possible). Wrapping it in a small white badge
-          makes that background read as an intentional chip against the dark navbar rather
-          than a stray rectangle; the logo pixels themselves are untouched. */}
-          <Link
-            to={ROUTES.home}
-            onClick={handleLogoClick}
-            aria-label="Uptime Smart Solutions — Home"
-            className="shrink-0 rounded-lg bg-white px-2.5 py-1.5 shadow-sm ring-1 ring-black/5 transition-transform hover:scale-[1.02]"
-          >
-            <img
-              src="/logo.png"
-              alt="Uptime Smart Solutions Pvt. Ltd."
-              width={LOGO_INTRINSIC_WIDTH}
-              height={LOGO_INTRINSIC_HEIGHT}
-              className="h-10 w-auto sm:h-12 md:h-14"
-            />
-          </Link>
+        <div className="hidden xl:block">
+          <Button href={toSectionHref("#contact")} size="sm" className="group">
+            Let&rsquo;s Talk
+            <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
+          </Button>
         </div>
+
+        <button
+          type="button"
+          onClick={() => setOpen((v) => !v)}
+          aria-label="Toggle menu"
+          aria-expanded={open}
+          aria-controls="mobile-menu"
+          className="inline-flex h-10 w-10 items-center justify-center rounded-full text-foreground xl:hidden"
+        >
+          {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+        </button>
       </Container>
 
       <AnimatePresence>

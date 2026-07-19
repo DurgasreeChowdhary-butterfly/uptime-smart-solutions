@@ -1,11 +1,16 @@
 import { motion } from "framer-motion";
+import { lazy, Suspense } from "react";
 
 import { EASE_SMOOTH, fadeInUp, staggerContainer } from "@/animations";
 import { Button, Container } from "@/components/ui";
 import { HERO_METRICS } from "@/constants";
-import { HeroScene } from "@/three/HeroScene";
 
 import { HeroLabels } from "./HeroLabels";
+
+// Three.js / React Three Fiber is the single heaviest dependency in the app —
+// split into its own chunk so it streams in alongside (not inside) the Home
+// route bundle, instead of blocking on it.
+const HeroScene = lazy(() => import("@/three/HeroScene").then((m) => ({ default: m.HeroScene })));
 
 /** Homepage hero: editorial two-column intro with an interactive 3D centerpiece. */
 export function Hero() {
@@ -94,7 +99,9 @@ export function Hero() {
           transition={{ duration: 0.9, ease: EASE_SMOOTH, delay: 0.2 }}
           className="relative mx-auto aspect-square w-full max-w-[360px] sm:max-w-[440px] lg:max-w-[480px] xl:max-w-[540px]"
         >
-          <HeroScene />
+          <Suspense fallback={null}>
+            <HeroScene />
+          </Suspense>
           <HeroLabels />
         </motion.div>
       </Container>

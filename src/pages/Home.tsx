@@ -1,3 +1,5 @@
+import { ROUTES } from "@/constants";
+import { Seo } from "@/seo";
 import {
   Capabilities,
   EngineeringPrinciples,
@@ -14,6 +16,7 @@ import { EditorialStatement, SectionDivider } from "@/sections/transitions";
 export function Home() {
   return (
     <>
+      <Seo path={ROUTES.home} />
       <Hero />
       <Capabilities />
       <SectionDivider label="See It In Action" />

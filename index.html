@@ -2,10 +2,58 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#05070d" />
-    <meta name="description" content="Uptime Smart Solutions Pvt. Ltd. — AI, automation, enterprise software, SaaS and digital products." />
+    <meta name="robots" content="index, follow" />
+
+    <!--
+      Default/global metadata for crawlers that don't execute JavaScript. Every route
+      overrides these at runtime via `src/seo/Seo.tsx` (see that file for why — this is a
+      client-rendered SPA with no SSR/prerendering). Keep these in sync by hand with
+      `src/constants/seo.ts` and `src/constants/site.ts`.
+    -->
+    <meta
+      name="description"
+      content="Uptime Smart Solutions engineers AI-powered software, automation, and enterprise applications that solve real business problems."
+    />
+    <meta
+      name="keywords"
+      content="AI software development, enterprise software engineering, AI automation, SaaS development, custom software company"
+    />
+    <link rel="canonical" href="https://uptimesmartsolutions.com/" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Uptime Smart Solutions" />
+    <meta
+      property="og:title"
+      content="Uptime Smart Solutions — Engineering Intelligent Software for Real Business Problems"
+    />
+    <meta
+      property="og:description"
+      content="Uptime Smart Solutions engineers AI-powered software, automation, and enterprise applications that solve real business problems."
+    />
+    <meta property="og:url" content="https://uptimesmartsolutions.com/" />
+    <meta property="og:image" content="https://uptimesmartsolutions.com/og-default.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="Uptime Smart Solutions — Engineering Intelligent Software for Real Business Problems"
+    />
+    <meta
+      name="twitter:description"
+      content="Uptime Smart Solutions engineers AI-powered software, automation, and enterprise applications that solve real business problems."
+    />
+    <meta name="twitter:image" content="https://uptimesmartsolutions.com/og-default.jpg" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -14,7 +62,33 @@
       rel="stylesheet"
     />
 
-    <title>Uptime Smart Solutions</title>
+    <title>Uptime Smart Solutions — Engineering Intelligent Software for Real Business Problems</title>
+
+    <!-- Site-wide structured data. Static (not JS-injected) so it's present for every
+         crawler, including ones that don't execute JavaScript. -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Uptime Smart Solutions",
+        "legalName": "Uptime Smart Solutions Pvt. Ltd.",
+        "url": "https://uptimesmartsolutions.com",
+        "logo": "https://uptimesmartsolutions.com/icon-512.png",
+        "email": "hello@uptimesmartsolutions.com",
+        "sameAs": [
+          "https://www.linkedin.com/company/uptime-smart-solutions",
+          "https://github.com/uptime-smart-solutions"
+        ]
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Uptime Smart Solutions",
+        "url": "https://uptimesmartsolutions.com"
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>

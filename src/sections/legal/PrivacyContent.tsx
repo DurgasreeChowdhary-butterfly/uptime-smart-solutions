@@ -90,7 +90,7 @@ export function PrivacyContent() {
             If you have questions about this Privacy Policy or how your information is handled, contact us at{" "}
             <a
               href={`mailto:${CONTACT_INFO.email}`}
-              className="text-primary underline underline-offset-2 hover:no-underline"
+              className="text-link underline underline-offset-2 hover:no-underline"
             >
               {CONTACT_INFO.email}
             </a>

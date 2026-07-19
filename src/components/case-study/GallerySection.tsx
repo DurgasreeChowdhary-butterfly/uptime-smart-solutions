@@ -24,6 +24,8 @@ export function GallerySection({
                 <img
                   src={image.src}
                   alt={image.alt}
+                  loading="lazy"
+                  decoding="async"
                   className="aspect-video w-full rounded-2xl border border-border object-cover"
                 />
               ) : (

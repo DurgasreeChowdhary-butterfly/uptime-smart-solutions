@@ -22,6 +22,8 @@ export function ArchitectureSection({
           <img
             src={diagram.src}
             alt={diagram.alt}
+            loading="lazy"
+            decoding="async"
             className="h-full w-full rounded-2xl border border-border object-cover"
           />
         ) : (

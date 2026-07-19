@@ -125,7 +125,7 @@ export function FeaturedWork() {
                 <p className="mt-1.5 text-sm text-muted-foreground">{item.outcome}</p>
 
                 {item.slug ? (
-                  <span className="mt-6 inline-flex items-center gap-1.5 self-start text-sm font-medium text-primary">
+                  <span className="mt-6 inline-flex items-center gap-1.5 self-start text-sm font-medium text-link">
                     View Case Study
                     <ArrowRight className="h-4 w-4" aria-hidden />
                   </span>

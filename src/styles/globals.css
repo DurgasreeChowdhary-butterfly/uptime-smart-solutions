@@ -23,6 +23,11 @@
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
 
+  /* Same brand blue, lightened just enough for small text on the dark background to
+     clear WCAG AA's 4.5:1 minimum — `--primary` itself only reaches ~3.9:1 there, fine
+     for UI components/large text but not for small body-sized links. */
+  --color-link: var(--link);
+
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
 
@@ -83,6 +88,7 @@
 
   --primary: #3b5bfd;
   --primary-foreground: #f5f6fa;
+  --link: #5874fd;
 
   --accent: #10e0a4;
   --accent-foreground: #04150f;
@@ -112,6 +118,8 @@
 
   --primary: #3b5bfd;
   --primary-foreground: #ffffff;
+  /* Already ~5.1:1 against the light background — no lightening needed here. */
+  --link: #3b5bfd;
 
   --accent: #0abd8c;
   --accent-foreground: #ffffff;

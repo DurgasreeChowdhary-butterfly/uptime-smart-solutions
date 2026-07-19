@@ -61,13 +61,15 @@ interface OrbitRingProps {
   axis: [number, number, number];
   color: THREE.Color;
   opacity?: number;
+  reducedMotion?: boolean;
 }
 
-function OrbitRing({ radius, tube, speed, axis, color, opacity = 0.4 }: OrbitRingProps) {
+function OrbitRing({ radius, tube, speed, axis, color, opacity = 0.4, reducedMotion = false }: OrbitRingProps) {
   const ref = useRef<THREE.Mesh>(null);
   const rotationAxis = useMemo(() => new THREE.Vector3(...axis).normalize(), [axis]);
 
   useFrame((_, delta) => {
+    if (reducedMotion) return;
     ref.current?.rotateOnAxis(rotationAxis, delta * speed);
   });
 
@@ -87,14 +89,16 @@ interface CircuitRingProps {
   speed: number;
   color: THREE.Color;
   opacity?: number;
+  reducedMotion?: boolean;
 }
 
-function CircuitRing({ radius, segments, axis, tilt, speed, color, opacity = 0.35 }: CircuitRingProps) {
+function CircuitRing({ radius, segments, axis, tilt, speed, color, opacity = 0.35, reducedMotion = false }: CircuitRingProps) {
   const ref = useRef<THREE.LineLoop>(null);
   const geometry = useCircuitLoop(radius, segments);
   const rotationAxis = useMemo(() => new THREE.Vector3(...axis).normalize(), [axis]);
 
   useFrame((_, delta) => {
+    if (reducedMotion) return;
     ref.current?.rotateOnAxis(rotationAxis, delta * speed);
   });
 
@@ -356,6 +360,7 @@ export function IntelligenceCore({ reducedMotion = false }: IntelligenceCoreProp
         speed={0.18}
         color={ACCENT}
         opacity={0.4}
+        reducedMotion={reducedMotion}
       />
       <CircuitRing
         radius={1.48}
@@ -365,10 +370,19 @@ export function IntelligenceCore({ reducedMotion = false }: IntelligenceCoreProp
         speed={-0.14}
         color={PRIMARY}
         opacity={0.3}
+        reducedMotion={reducedMotion}
       />
 
       {/* Orbit rings — smooth, elegant, varied axes/speeds/opacity */}
-      <OrbitRing radius={1.95} tube={0.008} speed={0.2} axis={[1, 0.25, 0]} color={PRIMARY} opacity={0.4} />
+      <OrbitRing
+        radius={1.95}
+        tube={0.008}
+        speed={0.2}
+        axis={[1, 0.25, 0]}
+        color={PRIMARY}
+        opacity={0.4}
+        reducedMotion={reducedMotion}
+      />
       <OrbitRing
         radius={2.18}
         tube={0.006}
@@ -376,6 +390,7 @@ export function IntelligenceCore({ reducedMotion = false }: IntelligenceCoreProp
         axis={[0.2, 1, 0.35]}
         color={PRIMARY}
         opacity={0.28}
+        reducedMotion={reducedMotion}
       />
       <OrbitRing
         radius={2.4}
@@ -384,6 +399,7 @@ export function IntelligenceCore({ reducedMotion = false }: IntelligenceCoreProp
         axis={[0.5, 0.1, 1]}
         color={ACCENT}
         opacity={0.22}
+        reducedMotion={reducedMotion}
       />
       <OrbitRing
         radius={2.6}
@@ -392,6 +408,7 @@ export function IntelligenceCore({ reducedMotion = false }: IntelligenceCoreProp
         axis={[0.8, 0.6, 0.1]}
         color={PRIMARY}
         opacity={0.14}
+        reducedMotion={reducedMotion}
       />
 
       {/* Layer 4 — floating particle field, two tones for depth */}

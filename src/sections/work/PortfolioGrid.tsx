@@ -40,7 +40,7 @@ export function PortfolioGrid() {
               <div className="mt-6 flex-1" />
 
               {item.slug ? (
-                <span className="inline-flex items-center gap-1.5 self-start text-sm font-medium text-primary">
+                <span className="inline-flex items-center gap-1.5 self-start text-sm font-medium text-link">
                   View Case Study
                   <ArrowRight className="h-4 w-4" aria-hidden />
                 </span>

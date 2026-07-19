@@ -1,14 +1,19 @@
+import { lazy } from "react";
 import { Route, Routes } from "react-router-dom";
 
 import { MainLayout } from "@/layouts/MainLayout";
-import { About } from "@/pages/About";
-import { CaseStudy } from "@/pages/CaseStudy";
-import { Contact } from "@/pages/Contact";
-import { Home } from "@/pages/Home";
-import { NotFound } from "@/pages/NotFound";
-import { Privacy } from "@/pages/Privacy";
-import { Terms } from "@/pages/Terms";
-import { Work } from "@/pages/Work";
+
+// Lazy-loaded per route so each page's JS only downloads when it's actually visited —
+// most importantly, Three.js / React Three Fiber (used only by Home's HeroScene) no
+// longer ships in the bundle for every other route.
+const Home = lazy(() => import("@/pages/Home").then((m) => ({ default: m.Home })));
+const Work = lazy(() => import("@/pages/Work").then((m) => ({ default: m.Work })));
+const CaseStudy = lazy(() => import("@/pages/CaseStudy").then((m) => ({ default: m.CaseStudy })));
+const About = lazy(() => import("@/pages/About").then((m) => ({ default: m.About })));
+const Contact = lazy(() => import("@/pages/Contact").then((m) => ({ default: m.Contact })));
+const Privacy = lazy(() => import("@/pages/Privacy").then((m) => ({ default: m.Privacy })));
+const Terms = lazy(() => import("@/pages/Terms").then((m) => ({ default: m.Terms })));
+const NotFound = lazy(() => import("@/pages/NotFound").then((m) => ({ default: m.NotFound })));
 
 function App() {
   return (

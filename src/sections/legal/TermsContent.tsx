@@ -87,7 +87,7 @@ export function TermsContent() {
             If you have questions about these Terms, contact us at{" "}
             <a
               href={`mailto:${CONTACT_INFO.email}`}
-              className="text-primary underline underline-offset-2 hover:no-underline"
+              className="text-link underline underline-offset-2 hover:no-underline"
             >
               {CONTACT_INFO.email}
             </a>

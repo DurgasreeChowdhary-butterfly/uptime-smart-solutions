@@ -10,8 +10,12 @@ import { IntelligenceCore } from "./IntelligenceCore";
 const PRIMARY = new THREE.Color(THEME_COLORS.primary);
 const ACCENT = new THREE.Color(THEME_COLORS.accent);
 
+interface StarfieldProps {
+  reducedMotion?: boolean;
+}
+
 /** Sparse, distant points for ambient depth behind the core — fixed, not tied to the core's rotation. */
-function Starfield() {
+function Starfield({ reducedMotion = false }: StarfieldProps) {
   const ref = useRef<THREE.Points>(null);
 
   const positions = useMemo(() => {
@@ -29,7 +33,7 @@ function Starfield() {
   }, []);
 
   useFrame((_, delta) => {
-    if (ref.current) ref.current.rotation.y += delta * 0.006;
+    if (ref.current && !reducedMotion) ref.current.rotation.y += delta * 0.006;
   });
 
   return (
@@ -84,7 +88,7 @@ export function HeroScene() {
           />
         </mesh>
 
-        <Starfield />
+        <Starfield reducedMotion={reducedMotion} />
 
         <ambientLight intensity={0.45} />
         <pointLight color={PRIMARY} intensity={3.5} distance={10} position={[3.5, 2, 4]} decay={2} />

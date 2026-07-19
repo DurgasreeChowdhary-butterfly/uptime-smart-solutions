@@ -5,6 +5,7 @@ import { ROUTES } from "@/constants";
 import { PageTransition } from "@/experience";
 import { buttonBaseClasses, buttonSizeClasses, buttonVariantClasses } from "@/lib/styles";
 import { cn } from "@/lib/utils";
+import { Seo } from "@/seo";
 
 // Real route changes, not same-page anchors — plain `Link`s styled like `Button`, not
 // `Button href`. See `FeaturedProject.tsx` for why.
@@ -25,6 +26,12 @@ const secondaryLinkClasses = cn(
 export function NotFound() {
   return (
     <PageTransition>
+      <Seo
+        title="Page Not Found"
+        description="The page you're looking for doesn't exist or may have moved."
+        path={typeof window !== "undefined" ? window.location.pathname : ROUTES.home}
+        noindex
+      />
       <section
         id="not-found"
         className="relative isolate flex min-h-[80svh] flex-col items-center justify-center overflow-hidden"

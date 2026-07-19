@@ -8,4 +8,6 @@ export const CONTACT_INFO = {
   github: "https://github.com/uptime-smart-solutions",
   location: "Remote-first — serving clients worldwide",
   hours: "Monday – Friday, 9:00 AM – 6:00 PM (IST)",
+  /** Destination number for the WhatsApp contact form, E.164 without the leading `+`. */
+  whatsapp: "919176399990",
 } as const;

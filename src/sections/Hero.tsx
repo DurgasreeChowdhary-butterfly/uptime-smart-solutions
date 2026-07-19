@@ -3,7 +3,7 @@ import { lazy, Suspense } from "react";
 
 import { EASE_SMOOTH, fadeInUp, staggerContainer } from "@/animations";
 import { Button, Container } from "@/components/ui";
-import { HERO_METRICS } from "@/constants";
+import { HERO_CAPABILITIES } from "@/constants";
 
 import { HeroLabels } from "./HeroLabels";
 
@@ -84,10 +84,10 @@ export function Hero() {
             variants={fadeInUp}
             className="mt-6 grid grid-cols-2 gap-x-8 gap-y-5 sm:grid-cols-4 sm:gap-x-10"
           >
-            {HERO_METRICS.map((metric) => (
-              <div key={metric.label}>
-                <p className="font-display text-2xl font-semibold sm:text-3xl">{metric.value}</p>
-                <p className="mt-1 text-xs text-muted-foreground sm:text-sm">{metric.label}</p>
+            {HERO_CAPABILITIES.map((capability) => (
+              <div key={capability.label} className="flex flex-col items-start gap-2">
+                <capability.icon className="h-5 w-5 text-primary sm:h-6 sm:w-6" aria-hidden />
+                <p className="text-sm font-medium text-foreground sm:text-base">{capability.label}</p>
               </div>
             ))}
           </motion.div>

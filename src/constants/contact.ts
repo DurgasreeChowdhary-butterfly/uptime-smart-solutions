@@ -1,6 +1,6 @@
 /**
  * Placeholder contact details — swap for the real values once available.
- * Same pattern as `HERO_METRICS` in `metrics.ts`.
+ * Same pattern as `HERO_CAPABILITIES` in `metrics.ts`.
  */
 export const CONTACT_INFO = {
   email: "hello@uptimesmartsolutions.com",

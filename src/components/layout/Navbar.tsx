@@ -84,7 +84,7 @@ export function Navbar() {
             alt="Uptime Smart Solutions Pvt. Ltd."
             width={LOGO_INTRINSIC_WIDTH}
             height={LOGO_INTRINSIC_HEIGHT}
-            className="h-9 w-auto md:h-10 lg:h-11"
+            className="h-10 w-auto md:h-11 lg:h-12"
           />
         </Link>
 
@@ -127,7 +127,7 @@ export function Navbar() {
 
         <div className="hidden xl:block">
           <Button href={toSectionHref("#contact")} size="sm" className="group">
-            Let&rsquo;s Talk
+            Discuss Your Project
             <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
           </Button>
         </div>
@@ -196,7 +196,7 @@ export function Navbar() {
                 className="mt-2 w-full justify-center"
                 onClick={() => setOpen(false)}
               >
-                Let&rsquo;s Talk
+                Discuss Your Project
                 <ArrowRight className="h-4 w-4" />
               </Button>
             </Container>

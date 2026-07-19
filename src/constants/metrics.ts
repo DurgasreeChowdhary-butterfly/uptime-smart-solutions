@@ -1,12 +1,15 @@
-export interface HeroMetric {
-  value: string;
+import { Boxes, Cpu, Layers, Workflow } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
+
+export interface HeroCapability {
   label: string;
+  icon: LucideIcon;
 }
 
-/** Placeholder figures — swap for real numbers once available. */
-export const HERO_METRICS: HeroMetric[] = [
-  { value: "30+", label: "Countries Served" },
-  { value: "120+", label: "Projects Delivered" },
-  { value: "98%", label: "Client Satisfaction" },
-  { value: "99.9%", label: "On-Time Delivery" },
+/** Compact capability highlights shown under the hero intro. */
+export const HERO_CAPABILITIES: HeroCapability[] = [
+  { label: "AI Engineering", icon: Cpu },
+  { label: "Enterprise Software", icon: Boxes },
+  { label: "Business Automation", icon: Workflow },
+  { label: "Full-Stack Development", icon: Layers },
 ];

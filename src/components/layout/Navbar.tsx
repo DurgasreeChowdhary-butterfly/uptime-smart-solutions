@@ -6,9 +6,15 @@ import { Link, useLocation } from "react-router-dom";
 
 import { transitionSmooth } from "@/animations";
 import { Button, Container } from "@/components/ui";
-import { NAV_LINKS, ROUTES, SITE } from "@/constants";
+import { NAV_LINKS, ROUTES } from "@/constants";
 import { useActiveSection, useScrolled } from "@/hooks";
 import { cn } from "@/lib/utils";
+
+// Intrinsic size of `/logo.png`, set as HTML attributes below so the browser can reserve
+// the correct aspect ratio before the image loads — avoids layout shift even though the
+// displayed height is overridden responsively by the `h-*` classes.
+const LOGO_INTRINSIC_WIDTH = 960;
+const LOGO_INTRINSIC_HEIGHT = 379;
 
 const SECTION_IDS = NAV_LINKS.filter((link) => link.href.startsWith("#")).map((link) => link.href.replace("#", ""));
 
@@ -63,16 +69,25 @@ export function Navbar() {
       />
 
       <Container className="relative z-10 flex h-16 items-center justify-between md:h-20">
-        <Link
-          to={ROUTES.home}
-          onClick={handleLogoClick}
-          className="flex items-center gap-2 font-display text-lg font-semibold tracking-tight"
+        {/* The centered nav (6 links) plus the CTA + logo cluster need ~1220px of room to
+        coexist without colliding — that only reliably clears at `xl` (1280px, which is also
+        `--container-max`, so the row never gets any wider beyond this point). Below `xl`,
+        stick with the hamburger menu rather than let nav links visually overlap the logo. */}
+        <button
+          type="button"
+          onClick={() => setOpen((v) => !v)}
+          aria-label="Toggle menu"
+          aria-expanded={open}
+          aria-controls="mobile-menu"
+          className="inline-flex h-10 w-10 items-center justify-center rounded-full text-foreground xl:hidden"
         >
-          <span className="h-2 w-2 rounded-full bg-accent" aria-hidden />
-          {SITE.name}
-        </Link>
+          {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+        </button>
 
-        <nav aria-label="Primary" className="hidden items-center gap-10 md:flex">
+        <nav
+          aria-label="Primary"
+          className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-10 xl:flex"
+        >
           {NAV_LINKS.map((link) => {
             const isRoute = !link.href.startsWith("#");
             const isActive = isRoute ? location.pathname === link.href : activeId === link.href.slice(1);
@@ -102,23 +117,33 @@ export function Navbar() {
           })}
         </nav>
 
-        <div className="hidden md:block">
-          <Button href={toSectionHref("#contact")} size="sm" className="group">
-            Let&rsquo;s Talk
-            <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
-          </Button>
-        </div>
+        <div className="ml-auto flex items-center gap-4 xl:gap-6">
+          <div className="hidden xl:block">
+            <Button href={toSectionHref("#contact")} size="sm" className="group">
+              Let&rsquo;s Talk
+              <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
+            </Button>
+          </div>
 
-        <button
-          type="button"
-          onClick={() => setOpen((v) => !v)}
-          aria-label="Toggle menu"
-          aria-expanded={open}
-          aria-controls="mobile-menu"
-          className="inline-flex h-10 w-10 items-center justify-center rounded-full text-foreground md:hidden"
-        >
-          {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-        </button>
+          {/* `/logo.png` is the exact uploaded asset — opaque white background baked in (source
+          was a JPEG, so no alpha channel was possible). Wrapping it in a small white badge
+          makes that background read as an intentional chip against the dark navbar rather
+          than a stray rectangle; the logo pixels themselves are untouched. */}
+          <Link
+            to={ROUTES.home}
+            onClick={handleLogoClick}
+            aria-label="Uptime Smart Solutions — Home"
+            className="shrink-0 rounded-lg bg-white px-2.5 py-1.5 shadow-sm ring-1 ring-black/5 transition-transform hover:scale-[1.02]"
+          >
+            <img
+              src="/logo.png"
+              alt="Uptime Smart Solutions Pvt. Ltd."
+              width={LOGO_INTRINSIC_WIDTH}
+              height={LOGO_INTRINSIC_HEIGHT}
+              className="h-10 w-auto sm:h-12 md:h-14"
+            />
+          </Link>
+        </div>
       </Container>
 
       <AnimatePresence>
@@ -130,7 +155,7 @@ export function Navbar() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={transitionSmooth}
-            className="overflow-hidden border-b border-border bg-background/95 backdrop-blur-xl md:hidden"
+            className="overflow-hidden border-b border-border bg-background/95 backdrop-blur-xl xl:hidden"
           >
             <Container className="flex flex-col gap-1 py-4">
               {NAV_LINKS.map((link) => {

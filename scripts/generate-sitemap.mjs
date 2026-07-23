@@ -18,7 +18,9 @@ const STATIC_PAGES = [
 ];
 
 const caseStudiesSource = readFileSync(`${ROOT}/src/constants/caseStudies.ts`, "utf8");
-const slugs = [...caseStudiesSource.matchAll(/slug:\s*"([a-z0-9-]+)"/g)].map((match) => match[1]);
+// Anchored to exactly 4 leading spaces so this only matches each registry entry's own
+// top-level `slug`, not the nested `slug` inside a `relatedProjects.projects[]` cross-link.
+const slugs = [...caseStudiesSource.matchAll(/^ {4}slug:\s*"([a-z0-9-]+)"/gm)].map((match) => match[1]);
 
 const casePages = slugs.map((slug) => ({ path: `/work/${slug}`, changefreq: "monthly", priority: "0.8" }));
 

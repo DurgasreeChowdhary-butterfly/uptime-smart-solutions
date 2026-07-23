@@ -1,16 +1,22 @@
 import {
   AudioLines,
   AudioWaveform,
+  Bot,
+  Brain,
   Calculator,
   CreditCard,
+  Filter,
+  LineChart,
   MessageSquare,
   Mic,
   Receipt,
   ScanText,
+  Send,
   Share2,
   ShieldCheck,
   ShoppingBag,
   Sparkles,
+  TrendingUp,
   Users,
   Workflow,
   Zap,
@@ -747,6 +753,550 @@ export const CASE_STUDIES: CaseStudyRegistryEntry[] = [
       cta: {
         heading: "Interested in Building Something Similar?",
         description: "Let's talk about engineering a digitized property management platform for your business.",
+        primaryCta: { label: "Start a Conversation", href: "/#contact" },
+        secondaryCta: { label: "Explore Our Work", href: "/#work" },
+      },
+    },
+  },
+  {
+    slug: "enterprise-workflow",
+    layout: {
+      hero: {
+        title: "Enterprise Workflow Automation",
+        tagline: "Removing manual intervention from enterprise banking operations, including systems with no API access.",
+        type: "Enterprise Automation",
+        industry: "Enterprise Banking",
+        focus: "Automated • Rules-Governed • Audit-Ready",
+        accent: "cyan",
+        tech: ["Python", "TensorFlow", "OpenCV", "Selenium"],
+        image: {
+          src: "/enterprise-workflow/hero.png",
+          alt: "Enterprise Workflow Automation AI engine connecting disconnected systems to automated outcomes and an operations dashboard",
+        },
+      },
+      productVision: {
+        statement:
+          "Enterprise Workflow Automation exists to remove manual intervention from repetitive back-office processes — connecting disconnected systems, applying consistent business rules, and extending automation to legacy portals that were never built with an API in mind.",
+      },
+      executiveSummary: {
+        summary:
+          "Enterprise Workflow Automation is a production-ready automation platform built for enterprise banking operations. It connects disconnected email, CRM, ERP, HR, and finance systems into a single rules-driven workflow engine, and uses computer vision and browser automation to complete tasks on legacy systems that expose no API.",
+        facts: [
+          { label: "Industry", value: "Enterprise Banking" },
+          { label: "Platform Type", value: "Enterprise Automation" },
+          { label: "Decisioning", value: "AI-Assisted, Rules-Governed" },
+          { label: "Legacy System Access", value: "Computer-Vision-Driven Automation" },
+        ],
+      },
+      challenge: {
+        description:
+          "Back-office operations at enterprise scale — invoice approvals, vendor onboarding, purchase requests, contract approvals — depend on data spread across email inboxes, spreadsheets, CRM, ERP, HR, and finance systems with no shared source of truth. Approval cycles routinely stretch across several days, the same record gets re-typed into multiple systems by hand, and some of the portals these processes depend on have no API at all — only a login form and a CAPTCHA standing between the workflow and completion.",
+        painPoints: [
+          "Data scattered across email, spreadsheets, CRM, ERP, HR, and finance systems with no single source of truth",
+          "The same record manually re-entered into multiple systems, with no protection against transcription errors",
+          "Approval cycles for budgets, vendor onboarding, and contracts stretching 3–6+ days with no real-time visibility",
+          "Legacy vendor and regulatory portals that expose no API, gating routine tasks behind a manual, CAPTCHA-protected form",
+        ],
+        image: {
+          src: "/enterprise-workflow/challenge.png",
+          alt: "Disconnected email, CRM, ERP, HR, and finance systems causing duplicate work, lost requests, and delayed approvals",
+        },
+      },
+      solution: {
+        description:
+          "Uptime Smart Solutions built a workflow automation engine that captures a business event, routes it through an AI-assisted decision layer and a deterministic business-rules engine, and executes it end to end — including, where a target system offers no programmatic access, driving that system's own web interface directly via computer vision and browser automation.",
+        approach: [
+          {
+            title: "Real-Time Event Capture",
+            description: "Business events — a new purchase order, an incoming invoice — are captured the moment they occur and handed to the workflow engine.",
+          },
+          {
+            title: "AI-Assisted Decisioning",
+            description: "An AI decision engine validates the data, assesses risk, and checks policy compliance before a workflow is allowed to proceed.",
+          },
+          {
+            title: "Deterministic Business Rules",
+            description: "An approval matrix, budget allocation, delegation rules, and compliance checks are applied consistently, the same way every time.",
+          },
+          {
+            title: "API-First Integration",
+            description: "Wherever a downstream system exposes an API, the integration layer connects to it directly to update records and trigger the next step.",
+          },
+          {
+            title: "Computer-Vision Automation for Legacy Systems",
+            description: "Where no API exists, Selenium drives a browser session while OpenCV and a TensorFlow model recognize and solve CAPTCHAs, so the workflow completes the task exactly as a human operator would.",
+          },
+          {
+            title: "Unified Notifications & Reporting",
+            description: "Once a workflow completes, stakeholders are notified automatically and audit-ready reports and dashboards update without manual reconciliation.",
+          },
+        ],
+        image: {
+          src: "/enterprise-workflow/solution.png",
+          alt: "Enterprise Workflow Automation pipeline from business event through AI decisioning, business rules, system integration, and reporting",
+        },
+      },
+      architecture: {
+        description:
+          "Every workflow starts as a business event and passes through AI-assisted decisioning and deterministic business rules before it touches a single downstream system. Where a system exposes an API, the integration layer calls it directly; where it doesn't, a computer-vision layer takes over that system's own interface so the workflow can still complete without a person sitting through the manual steps.",
+        layers: [
+          {
+            title: "Workflow Engine",
+            description: "Orchestrates trigger conditions and hands each business event to the right automated process.",
+          },
+          {
+            title: "AI Decision Engine",
+            description: "Validates data, assesses risk, and checks policy compliance before a workflow is allowed to proceed.",
+          },
+          {
+            title: "Business Rules Engine",
+            description: "Applies the approval matrix, budget allocation, delegation rules, and compliance checks deterministically.",
+          },
+          {
+            title: "Integration Layer",
+            description: "Connects to CRM, ERP, HR, and finance systems directly, wherever an API is available.",
+          },
+          {
+            title: "Computer-Vision Automation",
+            description: "Selenium drives the browser session while OpenCV and a TensorFlow model recognize and solve CAPTCHAs on systems that expose no API.",
+          },
+          {
+            title: "PostgreSQL Database",
+            description: "Stores workflow state, audit history, and every decision the engine makes, ready for compliance review.",
+          },
+          {
+            title: "Analytics Engine",
+            description: "Rolls processing time, success rate, and cost savings into a live operations view.",
+          },
+          {
+            title: "Cloud Infrastructure",
+            description: "Hosts the platform with the availability enterprise banking operations depend on.",
+          },
+        ],
+        diagram: {
+          src: "/enterprise-workflow/architecture.png",
+          alt: "Enterprise Workflow Automation system architecture diagram: users through the React dashboard, FastAPI backend, authentication, workflow engine, business rules engine, AI decision engine, integration layer, REST APIs, CRM/ERP systems, PostgreSQL database, analytics engine, and cloud infrastructure",
+          width: 941,
+          height: 1672,
+        },
+      },
+      featureGrid: {
+        image: {
+          src: "/enterprise-workflow/features.png",
+          alt: "Overview of Enterprise Workflow Automation's key features: workflow builder, AI decision engine, business rules, API integrations, and analytics dashboard",
+        },
+        features: [
+          {
+            title: "Visual Workflow Builder",
+            description: "Business events, triggers, and approval steps are configured visually rather than hard-coded into the platform.",
+            icon: Workflow,
+          },
+          {
+            title: "AI-Assisted Decisioning",
+            description: "An AI decision engine validates data, assesses risk, and checks policy compliance before a workflow proceeds.",
+            icon: Brain,
+          },
+          {
+            title: "Legacy System Automation",
+            description: "Computer vision and browser automation complete tasks on legacy portals that expose no API.",
+            icon: Bot,
+          },
+          {
+            title: "Audit-Ready Reporting",
+            description: "Every automated decision and action is logged, giving compliance teams a complete, traceable record.",
+            icon: ShieldCheck,
+          },
+        ],
+      },
+      technology: {
+        description: "Each technology was chosen for a specific role in automating both API-connected and API-less enterprise systems.",
+        groups: [
+          {
+            label: "Python",
+            description: "Core language orchestrating the workflow engine, business rules, and automation pipeline.",
+            items: ["Python"],
+          },
+          {
+            label: "TensorFlow",
+            description: "Powers the deep learning model that recognizes and solves CAPTCHAs on legacy, API-less systems.",
+            items: ["TensorFlow"],
+          },
+          {
+            label: "OpenCV",
+            description: "Preprocesses screen and document images before they reach the recognition model.",
+            items: ["OpenCV"],
+          },
+          {
+            label: "Selenium",
+            description: "Drives browser sessions to complete tasks on systems that offer no programmatic API.",
+            items: ["Selenium"],
+          },
+        ],
+      },
+      gallery: {
+        description: "A closer look at the problem this platform replaces and the automated workflow that replaced it.",
+        images: [
+          {
+            src: "/enterprise-workflow/challenge.png",
+            alt: "Disconnected email, CRM, ERP, HR, and finance systems causing duplicate work and delayed approvals",
+            caption: "Before: approvals and records scattered across disconnected systems, with no shared source of truth.",
+          },
+          {
+            src: "/enterprise-workflow/solution.png",
+            alt: "Automated workflow from business event through AI decisioning, business rules, and system integration",
+            caption: "The automated path: event capture, AI-assisted decisioning, business rules, and integration in one flow.",
+          },
+          {
+            src: "/enterprise-workflow/features.png",
+            alt: "Workflow automation engine dashboard with builder, AI decision engine, integrations, and live analytics",
+            caption: "Inside the platform: workflow builder, AI decision engine, integrations, and real-time analytics.",
+          },
+        ],
+      },
+      engineeringHighlights: {
+        highlights: [
+          {
+            title: "Computer Vision for Systems Without APIs",
+            description: "Selenium, OpenCV, and a TensorFlow CAPTCHA-recognition model let the platform complete tasks on legacy portals that were never built to be automated.",
+          },
+          {
+            title: "AI Assists, Rules Decide",
+            description: "The AI decision engine flags risk and validates data, but final approval logic runs through deterministic, auditable business rules.",
+          },
+          {
+            title: "Full Audit Trail for Regulated Operations",
+            description: "Every automated action — including CAPTCHA-gated legacy-system interactions — is logged for compliance review.",
+          },
+          {
+            title: "Modular Integration Layer",
+            description: "CRM, ERP, HR, and finance systems connect through a shared integration layer, so adding a new system doesn't mean rebuilding the workflow engine.",
+          },
+        ],
+      },
+      businessImpact: {
+        description: "Outcomes are described qualitatively — no usage, revenue, or adoption figures are published for this engagement.",
+        outcomes: [
+          {
+            title: "Reduces Manual Data Entry",
+            description: "Records no longer need to be re-typed by hand into every downstream system.",
+          },
+          {
+            title: "Shrinks Approval Cycle Times",
+            description: "Business events move through decisioning and rules automatically instead of waiting in someone's inbox.",
+          },
+          {
+            title: "Extends Automation to Legacy Systems",
+            description: "Computer vision and browser automation bring API-less, CAPTCHA-gated portals into the same automated workflow.",
+          },
+          {
+            title: "Improves Audit Readiness",
+            description: "Every automated decision is logged, giving compliance teams a traceable record on demand.",
+          },
+        ],
+      },
+      relatedProjects: {
+        projects: [
+          {
+            slug: "taxease-ai",
+            title: "TaxEase AI",
+            type: "AI-Powered Tax Platform",
+            industry: "FinTech / TaxTech",
+            summary: "A deterministic, rules-based tax engine paired with AI-assisted document understanding.",
+            accent: "blue",
+          },
+          {
+            slug: "iraivi-nest",
+            title: "Iraivi Nest",
+            type: "SaaS Platform",
+            industry: "Property Management",
+            summary: "Automated billing, electricity allocation, and resident lifecycle management.",
+            accent: "orange",
+          },
+          {
+            slug: "opportunity-intelligence",
+            title: "Opportunity Intelligence CRM",
+            type: "Business Platform",
+            industry: "Freelance CRM",
+            summary: "AI-scored lead pipeline with automated follow-up, proposals, and revenue forecasting.",
+            accent: "indigo",
+          },
+        ],
+      },
+      cta: {
+        heading: "Interested in Building Something Similar?",
+        description: "Let's talk about automating your enterprise workflows, including the systems that were never built with an API.",
+        primaryCta: { label: "Start a Conversation", href: "/#contact" },
+        secondaryCta: { label: "Explore Our Work", href: "/#work" },
+      },
+    },
+  },
+  {
+    slug: "opportunity-intelligence",
+    layout: {
+      hero: {
+        title: "Opportunity Intelligence CRM",
+        tagline: "Helping freelancers and small agencies discover, score, and prioritize the opportunities most likely to close.",
+        type: "Business Platform",
+        industry: "Freelance CRM",
+        focus: "Unified • AI-Scored • Pipeline-Driven",
+        accent: "indigo",
+        tech: ["React", "FastAPI", "Gemini", "PostgreSQL"],
+        image: {
+          src: "/opportunity-intelligence/hero.png",
+          alt: "Opportunity Intelligence CRM AI engine turning lead sources into scored opportunities, an automated sales pipeline, and an executive CRM dashboard",
+        },
+      },
+      productVision: {
+        statement:
+          "Opportunity Intelligence CRM exists to give freelancers and small agencies the same lead visibility and prioritization that larger sales teams take for granted — replacing scattered spreadsheets, chats, and inboxes with one AI-scored pipeline.",
+      },
+      executiveSummary: {
+        summary:
+          "Opportunity Intelligence CRM is a production-ready business platform built for freelancers and small agencies. It centralizes leads from every channel, scores and prioritizes them with AI, and automates follow-up, proposal tracking, and revenue forecasting from a single pipeline.",
+        facts: [
+          { label: "Industry", value: "Freelance CRM" },
+          { label: "Platform Type", value: "Business Platform" },
+          { label: "Lead Scoring", value: "AI-Powered" },
+          { label: "Forecasting", value: "Real-Time Pipeline Rollup" },
+        ],
+      },
+      challenge: {
+        description:
+          "Freelancers and small agencies generate leads from a wide spread of channels — website forms, WhatsApp, LinkedIn, email campaigns, paid ads, and referrals — but rarely have a system to bring them together. Leads sit in spreadsheets, chat threads, and inboxes with no consistent scoring or follow-up discipline, so good opportunities get missed, duplicated, or simply outpaced by a more responsive competitor.",
+        painPoints: [
+          "Leads scattered across spreadsheets, WhatsApp threads, email inboxes, and sticky notes with no single source of truth",
+          "No consistent way to score or prioritize which leads deserve a follow-up first",
+          "Follow-ups missed and the same lead worked twice because nothing tracks who's already reached out",
+          "No real-time visibility into pipeline stage, deal value, or next steps",
+        ],
+        image: {
+          src: "/opportunity-intelligence/challenge.png",
+          alt: "Leads scattered across spreadsheets, WhatsApp conversations, emails, and sticky notes, leading to missed follow-ups and lost opportunities",
+        },
+      },
+      solution: {
+        description:
+          "Uptime Smart Solutions built Opportunity Intelligence CRM around a single pipeline that captures leads from every channel, enriches and scores them with Gemini-powered AI, and automates the follow-up and proposal work that would otherwise depend on someone remembering to do it.",
+        approach: [
+          {
+            title: "Unified Lead Capture",
+            description: "Leads from website forms, WhatsApp, LinkedIn, email campaigns, paid ads, and referrals are captured into one system instead of six.",
+          },
+          {
+            title: "AI Lead Enrichment & Scoring",
+            description: "Gemini-powered enrichment adds firmographic and technographic context, then scores each lead so reps know who to call first.",
+          },
+          {
+            title: "Buying-Intent Analysis",
+            description: "Intent signals are surfaced automatically, showing which conversations are ready to move to a proposal.",
+          },
+          {
+            title: "Automated Sales Assignment & Follow-Up",
+            description: "Leads route to the right person automatically, with follow-up sequences that don't depend on someone remembering.",
+          },
+          {
+            title: "Proposal & Pipeline Management",
+            description: "Proposal status and pipeline stage are tracked centrally, not scattered across a rep's inbox.",
+          },
+          {
+            title: "Revenue Forecasting",
+            description: "Pipeline value and win probability roll up into a forecast that updates automatically as deals move.",
+          },
+        ],
+        image: {
+          src: "/opportunity-intelligence/solution.png",
+          alt: "Opportunity Intelligence CRM workflow from lead capture through AI scoring, intent analysis, sales assignment, and revenue forecasting",
+        },
+      },
+      architecture: {
+        description:
+          "Leads enter from every channel into a single CRM data model. An AI intelligence engine scores and enriches each one before workflow automation and notifications take over — so the pipeline, proposal, and revenue-forecast views stay current without manual updates.",
+        layers: [
+          {
+            title: "Lead Sources",
+            description: "Website forms, WhatsApp, LinkedIn, email campaigns, paid ads, and referrals all feed into a single intake point.",
+          },
+          {
+            title: "CRM Service",
+            description: "Holds every contact, account, and deal in one data model instead of several disconnected spreadsheets.",
+          },
+          {
+            title: "AI Intelligence Engine",
+            description: "Gemini enriches each lead with additional context and surfaces buying-intent signals.",
+          },
+          {
+            title: "Lead Scoring Engine",
+            description: "Ranks leads by score so reps always know which conversation to prioritize next.",
+          },
+          {
+            title: "Workflow Automation",
+            description: "Automates follow-up sequences, reminders, and proposal status updates.",
+          },
+          {
+            title: "Notification Service",
+            description: "Keeps reps informed by email, SMS, and WhatsApp as a lead moves through the pipeline.",
+          },
+          {
+            title: "PostgreSQL Database",
+            description: "Stores contacts, deals, and pipeline history behind every dashboard view.",
+          },
+          {
+            title: "Business Intelligence Dashboard",
+            description: "Rolls pipeline value, win rate, and forecast into a single executive view.",
+          },
+        ],
+        diagram: {
+          src: "/opportunity-intelligence/architecture.png",
+          alt: "Opportunity Intelligence CRM system architecture diagram: lead sources through the React dashboard, FastAPI backend, authentication, CRM service, AI intelligence engine, lead scoring engine, workflow automation, notification service, PostgreSQL database, analytics engine, business intelligence dashboard, and cloud infrastructure",
+          width: 941,
+          height: 1672,
+        },
+      },
+      featureGrid: {
+        image: {
+          src: "/opportunity-intelligence/features.png",
+          alt: "Overview of Opportunity Intelligence CRM's key features: lead capture, AI lead scoring, opportunity tracking, sales pipeline, and revenue forecasting",
+        },
+        features: [
+          {
+            title: "AI-Powered Lead Scoring",
+            description: "Every lead is scored and enriched automatically, so reps always know which opportunity to work next.",
+            icon: TrendingUp,
+          },
+          {
+            title: "Unified Opportunity Pipeline",
+            description: "Leads from every channel move through one pipeline instead of being tracked separately per source.",
+            icon: Filter,
+          },
+          {
+            title: "Automated Follow-Ups & Proposals",
+            description: "Follow-up sequences and proposal status updates run automatically, without depending on someone remembering.",
+            icon: Send,
+          },
+          {
+            title: "Revenue Forecasting & Analytics",
+            description: "Pipeline value, win probability, and forecast revenue update in real time as deals move stage.",
+            icon: LineChart,
+          },
+        ],
+      },
+      technology: {
+        description: "Each technology was chosen for a specific role in turning scattered leads into a scored, forecastable pipeline.",
+        groups: [
+          {
+            label: "React",
+            description: "Modern component architecture for the CRM dashboard and pipeline views.",
+            items: ["React"],
+          },
+          {
+            label: "FastAPI",
+            description: "High-performance Python backend powering the platform's API.",
+            items: ["FastAPI"],
+          },
+          {
+            label: "Gemini",
+            description: "Powers lead enrichment, scoring, intent analysis, and AI-generated recommendations.",
+            items: ["Gemini"],
+          },
+          {
+            label: "PostgreSQL",
+            description: "Reliable relational storage for contacts, deals, and pipeline history.",
+            items: ["PostgreSQL"],
+          },
+        ],
+      },
+      gallery: {
+        description: "A closer look at the problem this platform replaces and the pipeline that replaced it.",
+        images: [
+          {
+            src: "/opportunity-intelligence/challenge.png",
+            alt: "Leads scattered across spreadsheets, WhatsApp, email, and sticky notes, leading to missed follow-ups",
+            caption: "Before: leads scattered across spreadsheets, chats, and inboxes, with opportunities falling through the cracks.",
+          },
+          {
+            src: "/opportunity-intelligence/solution.png",
+            alt: "Automated pipeline from lead capture through AI scoring, sales assignment, and revenue forecasting",
+            caption: "The automated pipeline: capture, AI scoring, intent analysis, follow-up, and forecasting in one flow.",
+          },
+          {
+            src: "/opportunity-intelligence/features.png",
+            alt: "AI CRM engine dashboard with lead capture, scoring, pipeline tracking, and revenue forecasting",
+            caption: "Inside the platform: lead capture, AI scoring, pipeline tracking, and forecasting in one dashboard.",
+          },
+        ],
+      },
+      engineeringHighlights: {
+        highlights: [
+          {
+            title: "AI Scores, Reps Decide",
+            description: "AI ranks and enriches leads, but each rep still owns the relationship and the final call — scoring speeds up prioritization, it doesn't replace judgment.",
+          },
+          {
+            title: "Single Source of Truth Across Channels",
+            description: "Unifying website, WhatsApp, LinkedIn, email, ads, and referrals into one lead record eliminates duplicate and conflicting entries.",
+          },
+          {
+            title: "Modular AI Layer",
+            description: "Gemini-powered scoring, enrichment, and insights sit on top of the core CRM data model, so the AI layer can evolve independently of it.",
+          },
+          {
+            title: "Real-Time Pipeline & Forecast Updates",
+            description: "Revenue forecasts recalculate as deals move stage, rather than depending on a manual monthly rollup.",
+          },
+        ],
+      },
+      businessImpact: {
+        description: "Outcomes are described qualitatively — no usage, revenue, or adoption figures are published for this engagement.",
+        outcomes: [
+          {
+            title: "Centralizes Lead Discovery",
+            description: "Consolidates leads from every channel into a single pipeline instead of scattered spreadsheets and chats.",
+          },
+          {
+            title: "Improves Follow-Up Discipline",
+            description: "Automated reminders and sequences reduce the number of leads that fall through the cracks.",
+          },
+          {
+            title: "Prioritizes High-Intent Opportunities",
+            description: "AI scoring and intent analysis help reps focus effort on the leads most likely to close.",
+          },
+          {
+            title: "Improves Pipeline Visibility",
+            description: "A real-time dashboard replaces manual reporting across the funnel, from lead to closed deal.",
+          },
+        ],
+      },
+      relatedProjects: {
+        projects: [
+          {
+            slug: "prakruti-organics",
+            title: "Prakruti Organics",
+            type: "Commerce Platform",
+            industry: "Retail Commerce",
+            summary: "AI-powered shopping assistance unified with commerce, payments, and affiliate marketing.",
+            accent: "green",
+          },
+          {
+            slug: "voiceiq",
+            title: "VoiceIQ",
+            type: "AI Platform",
+            industry: "Voice AI",
+            summary: "Real-time voice AI pipeline for automating enterprise customer conversations.",
+            accent: "purple",
+          },
+          {
+            slug: "enterprise-workflow",
+            title: "Enterprise Workflow Automation",
+            type: "Enterprise Automation",
+            industry: "Enterprise Banking",
+            summary: "Rules-governed workflow automation extended to legacy, API-less enterprise systems.",
+            accent: "cyan",
+          },
+        ],
+      },
+      cta: {
+        heading: "Interested in Building Something Similar?",
+        description: "Let's talk about engineering an AI-scored CRM pipeline for your business.",
         primaryCta: { label: "Start a Conversation", href: "/#contact" },
         secondaryCta: { label: "Explore Our Work", href: "/#work" },
       },

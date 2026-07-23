@@ -16,6 +16,9 @@ export interface CaseStudyFact {
 export interface CaseStudyImage {
   src: string;
   alt: string;
+  /** Intrinsic pixel dimensions, used to reserve layout space and prevent CLS. Defaults to 1672x941 (16:9) when omitted. */
+  width?: number;
+  height?: number;
 }
 
 export interface CaseStudyHeroProps {

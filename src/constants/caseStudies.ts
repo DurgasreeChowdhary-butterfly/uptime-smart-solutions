@@ -135,7 +135,9 @@ export const CASE_STUDIES: CaseStudyRegistryEntry[] = [
         ],
         diagram: {
           src: "/taxease-ai/architecture.png",
-          alt: "TaxEase AI system architecture diagram, from document upload through AI extraction, human verification, and the deterministic tax engine",
+          alt: "TaxEase AI system architecture diagram: users through the React frontend, authentication and secure file upload, FastAPI backend, OCR and AI document intelligence, business rules and tax calculation engines, compliance validation, PostgreSQL database, audit logs, analytics dashboard, and cloud infrastructure",
+          width: 941,
+          height: 1672,
         },
       },
       featureGrid: {
@@ -268,6 +270,10 @@ export const CASE_STUDIES: CaseStudyRegistryEntry[] = [
         focus: "Real-Time • Voice-First • AI-Assisted",
         accent: "purple",
         tech: ["Pipecat", "Deepgram", "ElevenLabs", "Gemini"],
+        image: {
+          src: "/voiceiq/hero.png",
+          alt: "VoiceIQ real-time voice AI dashboard showing live calls, AI conversation intelligence, and call analytics",
+        },
       },
       productVision: {
         statement:
@@ -291,6 +297,10 @@ export const CASE_STUDIES: CaseStudyRegistryEntry[] = [
           "Generating contextually appropriate responses fast enough to sustain a live conversation",
           "Producing natural-sounding speech output rather than robotic text-to-speech",
         ],
+        image: {
+          src: "/voiceiq/challenge.png",
+          alt: "Overwhelmed manual contact center workflow with ringing phones, missed calls, and disconnected spreadsheets that VoiceIQ replaces",
+        },
       },
       solution: {
         description:
@@ -314,8 +324,24 @@ export const CASE_STUDIES: CaseStudyRegistryEntry[] = [
             description: "ElevenLabs converts the AI's text response back into natural-sounding speech.",
           },
         ],
+        image: {
+          src: "/voiceiq/solution.png",
+          alt: "VoiceIQ's real-time voice pipeline, from speech recognition through AI understanding, business rules, CRM updates, and workflow automation",
+        },
+      },
+      architecture: {
+        diagram: {
+          src: "/voiceiq/architecture.png",
+          alt: "VoiceIQ system architecture diagram: customer calls flow through the telephony platform, Deepgram speech-to-text, Gemini AI reasoning, business logic and knowledge base, Pipedream automation, ElevenLabs text-to-speech, CRM database, analytics dashboard, and cloud infrastructure",
+          width: 1672,
+          height: 941,
+        },
       },
       featureGrid: {
+        image: {
+          src: "/voiceiq/features.png",
+          alt: "Overview of VoiceIQ's key features: live voice calls, AI voice assistant, sentiment analysis, CRM integration, workflow automation, and multi-language support",
+        },
         features: [
           {
             title: "Real-Time Voice Conversations",
@@ -419,6 +445,10 @@ export const CASE_STUDIES: CaseStudyRegistryEntry[] = [
         focus: "Commerce • AI-Assisted • Unified",
         accent: "green",
         tech: ["React", "FastAPI", "PostgreSQL", "Gemini", "Razorpay"],
+        image: {
+          src: "/prakruti-organics/hero.png",
+          alt: "Prakruti Organics unified commerce platform showing the customer shopping experience, e-commerce storefront, and business operations dashboard",
+        },
       },
       productVision: {
         statement:
@@ -442,6 +472,10 @@ export const CASE_STUDIES: CaseStudyRegistryEntry[] = [
           "Shoppers increasingly expect AI-powered guidance, not just a static product catalog",
           "Payments need to be secure and suited to the retail market being served",
         ],
+        image: {
+          src: "/prakruti-organics/challenge.png",
+          alt: "Disconnected, manual retail operations — paper order books, phone orders, manual inventory tracking, and stock confusion — that Prakruti Organics replaces",
+        },
       },
       solution: {
         description:
@@ -464,8 +498,24 @@ export const CASE_STUDIES: CaseStudyRegistryEntry[] = [
             description: "Affiliate marketing is built into the platform itself, rather than run through a separate third-party system.",
           },
         ],
+        image: {
+          src: "/prakruti-organics/solution.png",
+          alt: "Prakruti Organics' unified commerce workflow, from product browsing and checkout through payment, order processing, and inventory updates",
+        },
+      },
+      architecture: {
+        diagram: {
+          src: "/prakruti-organics/architecture.png",
+          alt: "Prakruti Organics system architecture diagram: customer through the React frontend, REST API, FastAPI backend, authentication, business logic, Razorpay payment gateway, PostgreSQL database, admin dashboard, and cloud hosting",
+          width: 941,
+          height: 1672,
+        },
       },
       featureGrid: {
+        image: {
+          src: "/prakruti-organics/features.png",
+          alt: "Overview of Prakruti Organics' key features: product catalog, smart search, secure checkout, Razorpay payments, GST billing, and customer reviews",
+        },
         features: [
           {
             title: "Unified Commerce Experience",
@@ -572,6 +622,10 @@ export const CASE_STUDIES: CaseStudyRegistryEntry[] = [
         focus: "Digitized • Automated • Resident-Focused",
         accent: "orange",
         tech: ["React", "FastAPI", "PostgreSQL"],
+        image: {
+          src: "/iraivi-nest/hero.png",
+          alt: "Iraivi Nest property management dashboard showing resident registration, billing and electricity engines, and the business operations overview",
+        },
       },
       productVision: {
         statement:
@@ -595,6 +649,10 @@ export const CASE_STUDIES: CaseStudyRegistryEntry[] = [
           "Electricity costs allocated across residents without an automated process",
           "Residents tracked through onboarding and move-out without a unified system",
         ],
+        image: {
+          src: "/iraivi-nest/challenge.png",
+          alt: "Overwhelmed manual property management — paper resident registers, notebook rent calculations, and missed payments — that Iraivi Nest replaces",
+        },
       },
       solution: {
         description:
@@ -613,8 +671,24 @@ export const CASE_STUDIES: CaseStudyRegistryEntry[] = [
             description: "Residents are tracked through their lifecycle, from onboarding through move-out.",
           },
         ],
+        image: {
+          src: "/iraivi-nest/solution.png",
+          alt: "Iraivi Nest's automated resident workflow, from registration and room allocation through billing, payment collection, and vacating settlement",
+        },
+      },
+      architecture: {
+        diagram: {
+          src: "/iraivi-nest/architecture.png",
+          alt: "Iraivi Nest system architecture diagram: residents through the React frontend, FastAPI backend, authentication, business rules engine, room allocation, billing and electricity calculation engines, payment module, PostgreSQL database, reporting dashboard, and cloud infrastructure",
+          width: 941,
+          height: 1672,
+        },
       },
       featureGrid: {
+        image: {
+          src: "/iraivi-nest/features.png",
+          alt: "Overview of Iraivi Nest's key features: resident management, room and bed allocation, automated billing, electricity calculation, and occupancy analytics",
+        },
         features: [
           {
             title: "Automated Billing",

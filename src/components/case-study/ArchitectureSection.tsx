@@ -22,8 +22,8 @@ export function ArchitectureSection({
           <img
             src={diagram.src}
             alt={diagram.alt}
-            width={1672}
-            height={941}
+            width={diagram.width ?? 1672}
+            height={diagram.height ?? 941}
             loading="lazy"
             decoding="async"
             className="mx-auto h-auto w-full rounded-2xl border border-border object-contain"

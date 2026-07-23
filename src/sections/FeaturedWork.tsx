@@ -48,6 +48,10 @@ export const CASE_STUDIES: CaseStudy[] = [
     outcome: "Developed a production-ready Voice AI platform for automated customer interactions.",
     accent: "purple",
     slug: "voiceiq",
+    image: {
+      src: "/voiceiq/hero.png",
+      alt: "VoiceIQ real-time voice AI dashboard showing live calls, AI conversation intelligence, and call analytics",
+    },
   },
   {
     title: "Prakruti Organics",
@@ -58,6 +62,10 @@ export const CASE_STUDIES: CaseStudy[] = [
     outcome: "Unified commerce, payments, AI assistance, and affiliate marketing into a single platform.",
     accent: "green",
     slug: "prakruti-organics",
+    image: {
+      src: "/prakruti-organics/hero.png",
+      alt: "Prakruti Organics unified commerce platform showing the customer shopping experience, e-commerce storefront, and business operations dashboard",
+    },
   },
   {
     title: "Iraivi Nest",
@@ -68,6 +76,10 @@ export const CASE_STUDIES: CaseStudy[] = [
     outcome: "Automated billing, electricity allocation, and resident lifecycle management.",
     accent: "orange",
     slug: "iraivi-nest",
+    image: {
+      src: "/iraivi-nest/hero.png",
+      alt: "Iraivi Nest property management dashboard showing resident registration, billing and electricity engines, and the business operations overview",
+    },
   },
   {
     title: "Enterprise Workflow Automation",
@@ -77,6 +89,10 @@ export const CASE_STUDIES: CaseStudy[] = [
     tech: ["Python", "TensorFlow", "OpenCV", "Selenium"],
     outcome: "Automated CAPTCHA recognition and workflow execution using deep learning.",
     accent: "cyan",
+    image: {
+      src: "/enterprise-workflow/hero.png",
+      alt: "Enterprise Workflow Automation AI engine connecting disconnected systems to automated outcomes and an operations dashboard",
+    },
   },
   {
     title: "Opportunity Intelligence CRM",
@@ -86,6 +102,10 @@ export const CASE_STUDIES: CaseStudy[] = [
     tech: ["React", "FastAPI", "Gemini", "PostgreSQL"],
     outcome: "Centralized opportunity discovery, AI analysis, proposal strategy, and pipeline management.",
     accent: "indigo",
+    image: {
+      src: "/opportunity-intelligence/hero.png",
+      alt: "Opportunity Intelligence CRM AI engine turning lead sources into scored opportunities, an automated sales pipeline, and an executive CRM dashboard",
+    },
   },
 ];
 

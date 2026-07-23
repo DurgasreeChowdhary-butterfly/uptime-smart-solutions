@@ -2,12 +2,13 @@ import { AnimatePresence, motion } from "framer-motion";
 import { ArrowRight, Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import type { MouseEvent } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
-import { transitionSmooth } from "@/animations";
-import { Button, Container } from "@/components/ui";
+import { transitionFast, transitionSmooth } from "@/animations";
+import { Container } from "@/components/ui";
 import { NAV_LINKS, ROUTES } from "@/constants";
 import { useActiveSection, useScrolled } from "@/hooks";
+import { buttonBaseClasses, buttonSizeClasses, buttonVariantClasses } from "@/lib/styles";
 import { cn } from "@/lib/utils";
 
 // Intrinsic size of `/logo.png`, set as HTML attributes below so the browser can reserve
@@ -18,14 +19,44 @@ const LOGO_INTRINSIC_HEIGHT = 379;
 
 const SECTION_IDS = NAV_LINKS.filter((link) => link.href.startsWith("#")).map((link) => link.href.replace("#", ""));
 
+// Same classes and `whileHover` as `Button`, but deliberately no `whileTap` — on a
+// touchscreen, Framer Motion's tap-vs-drag gesture recognition can read a real
+// (slightly-moved) tap as a drag and silently drop the click, which would otherwise
+// make this section-nav CTA randomly no-op on mobile. See `FinalCTA.tsx` for the same
+// lesson learned on a different button. Dropping only `whileTap` (not `whileHover`)
+// keeps the desktop hover feel identical to `Button`.
+const ctaLinkClasses = cn(buttonBaseClasses, buttonVariantClasses.primary, buttonSizeClasses.sm, "group");
+
 /** Premium floating navbar: transparent over the hero, blurs in once scrolled. */
 export function Navbar() {
   const scrolled = useScrolled(24);
   const [open, setOpen] = useState(false);
   const activeId = useActiveSection(SECTION_IDS);
   const location = useLocation();
+  const navigate = useNavigate();
   const isHome = location.pathname === ROUTES.home;
   const toSectionHref = (hash: string) => (isHome ? hash : `${ROUTES.home}${hash}`);
+
+  // Section-anchor nav links (Expertise/Solutions/Projects/Company/Contact) navigate
+  // client-side instead of relying on the browser's native `<a href="#hash">` jump —
+  // that native jump only works same-page; from another route it's a plain anchor with
+  // a path in it, so the browser does a full hard reload that lands on Home at the top
+  // with no scroll, since the target section doesn't exist in the DOM until the page has
+  // re-rendered. Routing there with `navigate()` keeps it a single SPA transition either
+  // way, and `ScrollToTop` (keyed on `location.hash`) does the actual scrolling, retrying
+  // until the target section has mounted, e.g. after a lazy-loaded route.
+  function handleSectionNavClick(e: MouseEvent<HTMLAnchorElement>, hash: string) {
+    // Let modified/non-primary clicks fall through to the browser's normal handling
+    // (open in new tab, open in new window, etc.) instead of hijacking them.
+    if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+
+    e.preventDefault();
+    setOpen(false);
+    // Unlock body scroll synchronously rather than waiting on the lock effect's cleanup —
+    // the scroll this triggers must not race a still-`overflow: hidden` body.
+    document.body.style.overflow = "";
+    navigate(toSectionHref(hash));
+  }
 
   // Lock body scroll while the mobile menu is open, and always restore it on close/unmount.
   useEffect(() => {
@@ -116,6 +147,7 @@ export function Navbar() {
               <a
                 key={link.href}
                 href={toSectionHref(link.href)}
+                onClick={(e) => handleSectionNavClick(e, link.href)}
                 aria-current={isActive ? "page" : undefined}
                 className={linkClassName}
               >
@@ -126,10 +158,16 @@ export function Navbar() {
         </nav>
 
         <div className="hidden xl:block">
-          <Button href={toSectionHref("#contact")} size="sm" className="group">
+          <motion.a
+            href={toSectionHref("#contact")}
+            onClick={(e) => handleSectionNavClick(e, "#contact")}
+            whileHover={{ scale: 1.02 }}
+            transition={transitionFast}
+            className={ctaLinkClasses}
+          >
             Discuss Your Project
             <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
-          </Button>
+          </motion.a>
         </div>
 
         <button
@@ -182,7 +220,7 @@ export function Navbar() {
                   <a
                     key={link.href}
                     href={toSectionHref(link.href)}
-                    onClick={() => setOpen(false)}
+                    onClick={(e) => handleSectionNavClick(e, link.href)}
                     aria-current={isActive ? "page" : undefined}
                     className={linkClassName}
                   >
@@ -190,15 +228,14 @@ export function Navbar() {
                   </a>
                 );
               })}
-              <Button
+              <a
                 href={toSectionHref("#contact")}
-                size="sm"
-                className="mt-2 w-full justify-center"
-                onClick={() => setOpen(false)}
+                onClick={(e) => handleSectionNavClick(e, "#contact")}
+                className={cn(ctaLinkClasses, "mt-2 w-full justify-center")}
               >
                 Discuss Your Project
                 <ArrowRight className="h-4 w-4" />
-              </Button>
+              </a>
             </Container>
           </motion.nav>
         )}

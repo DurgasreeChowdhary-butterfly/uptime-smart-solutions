@@ -116,7 +116,10 @@ const metaLabelClasses = "text-xs font-medium tracking-[0.2em] text-muted-foregr
 /** Grid of featured engineering case studies. */
 export function FeaturedWork() {
   return (
-    <Section id="work" className="scroll-mt-24">
+    // `viewportAmount="some"`: on mobile the grid collapses to a single column and the
+    // section's own height (6 stacked cards) exceeds the viewport, so the default 20%
+    // threshold can never be satisfied — see `Section`'s `viewportAmount` doc comment.
+    <Section id="work" className="scroll-mt-24" viewportAmount="some">
       <SectionHeading
         eyebrow="FEATURED WORK"
         heading="Featured Engineering Work"
